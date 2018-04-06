@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .field{
+            margin-left:2rem;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+        .input{
+            height: 2rem;
+            width: 3rem;
+            font-size:18pt;
+        }
+        .input.correct{
+            background-color: lime;
+        }
+        .input.wrong{
+            background-color: orangered;
+        }
+        button{
+            font-size: 3rem;
+            margin-left: 4rem;
+        }
+    </style>
+    <title>Math</title>
+</head>
+<body>
+        <h2>Multiplication</h2>
+
+        <ul id="list"></ul>
+        
+        <button id='btn'>Check</button>
+    
+</body>
+   
+    <script>        
+        
+        let rightAnswer = [];
+        
+        let ul = document.getElementById('list');
+        let df = document.createDocumentFragment('div');
+        
+        for(i=0; i<9; i++){
+            let div = document.createElement('div');
+            let label = document.createElement('label');
+            let input = document.createElement('input');
+            
+            let math1 = Math.floor(Math.random()*10);
+            let math2 = Math.floor(Math.random()*10);
+            rightAnswer.push(math1*math2);
+            
+            div.classList.add('field');
+            label.textContent = math1 + " X " + math2 + " = ";
+            input.classList.add('input');
+            
+            div.appendChild(label);
+            div.appendChild(input);
+            df.appendChild(div);
+        }
+        
+        ul.appendChild(df);
+        
+        let inputArray = document.querySelectorAll('.input');
+        
+        let btnCheck = document.getElementById('btn');
+        
+        btnCheck.addEventListener('click',()=>{
+            
+            for(i=0; i<9; i++){
+                
+               if(inputArray[i].value == rightAnswer[i]){
+                   
+                    inputArray[i].classList.remove('wrong');
+                    inputArray[i].classList.add('correct');
+                   
+               }else{
+                    inputArray[i].classList.add('wrong');
+               }
+            }
+        });
+        
+    </script>
+</html>
